@@ -43,20 +43,10 @@ class HomePage extends GetView<TaskController> {
                 children: [
                   filteredWidget(context, 'All', 'No tasks', controller.tasks,
                       Icons.schedule),
-                  filteredWidget(context, 'Completed', 'No completed tasks',
-                      controller.completedTask, Icons.check),
-                ],
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
                   filteredWidget(context, 'Pending', 'No pending tasks',
                       controller.pendingTask, Icons.pending),
-                  filteredWidget(context, 'In Progress', 'No in progress tasks',
-                      controller.inProgressTask, Icons.pending),
+                  filteredWidget(context, 'Completed', 'No completed tasks',
+                      controller.completedTask, Icons.check),
                 ],
               ),
               const SizedBox(
@@ -73,7 +63,7 @@ class HomePage extends GetView<TaskController> {
               Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.37,
+                    height: MediaQuery.of(context).size.height * 0.6,
                     child: GetX<TaskController>(
                         init: Get.put<TaskController>(TaskController()),
                         builder: (TaskController taskController) {
@@ -152,8 +142,8 @@ class HomePage extends GetView<TaskController> {
       },
       child: Container(
         width: (MediaQuery.of(context).size.width < 768)
-            ? MediaQuery.of(context).size.width * 0.45
-            : MediaQuery.of(context).size.width * 0.42,
+            ? MediaQuery.of(context).size.width * 0.30
+            : MediaQuery.of(context).size.width * 0.27,
         height: MediaQuery.of(context).size.height * 0.15,
         decoration: BoxDecoration(
             color: Color.fromARGB(255, 199, 208, 236),
@@ -177,7 +167,7 @@ class HomePage extends GetView<TaskController> {
                 child: Text(
                   title,
                   style:
-                      GoogleFonts.notoSans(fontSize: 20.0, color: Colors.black),
+                      GoogleFonts.notoSans(fontSize: 18.0, color: Colors.black),
                 ),
               ),
             ]),

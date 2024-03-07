@@ -10,6 +10,8 @@ class TaskController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late TextEditingController nameController, descController;
 
+  final GetStorage _getStorage = GetStorage();
+
   // Firestore operation
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
@@ -25,12 +27,16 @@ class TaskController extends GetxController {
   RxString selectedStatus = ''.obs;
   RxString selectedId = ''.obs;
 
+  String? userId = '';
+
   @override
   void onInit() {
+    userId = _getStorage.read("userId");
     super.onInit();
     nameController = TextEditingController();
     descController = TextEditingController();
-    collectionReference = firebaseFirestore.collection("task");
+    collectionReference =
+        firebaseFirestore.collection("task").doc(userId).collection("tasks");
     tasks.bindStream(getAllTask());
     completedTask.bindStream(getCompletedTask());
     inProgressTask.bindStream(getProgressTask());
